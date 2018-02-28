@@ -84,104 +84,282 @@ typedef unsigned char u8;
 
 #define ROUND_NUM 18
 
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+
+// Look Up Table - Start
+
+//////////////////////////////////////////////////////////////////////////////////
+u64 LUT[256] = {
+        0xe64ef6412359c370,
+        0x73a77b594ae51ab8,
+        0x34497b9c45310c9d,
+        0x91027b420f1093e8,
+        0x8c5bf6338167e7e0,
+        0x4b8d00e18715d878,
+        0x506e000ea2594d15,
+        0x03a8000999edab2c,
+        0x6821f6388a62183a,
+        0x67b2f653e43da861,
+        0x7abef66e3e2c380d,
+        0x64417b2c2f97a5a0,
+        0x39f000ab444b29a5,
+        0xee2c7b594a601a33,
+        0x5d647b3557095051,
+        0x40077bc0380347fa,
+        0xa448f67bf6297b29,
+        0x0f66002d1b4e7518,
+        0xc2a3f6d52cc56559,
+        0x6e00f64a4bcb6eb0,
+        0x271c7b931d3ad267,
+        0x3c2700b46c386360,
+        0x32a200b46cbd6356,
+        0xeabd004d7e243699,
+        0x2cc300a2ab547e6f,
+        0x3b2900cfc6a2f387,
+        0x331100991253442f,
+        0x3e97f6bad265d5ad,
+        0xa3107b78c34b42bb,
+        0xd7e8f614080b4e58,
+        0xac267b931d30d25d,
+        0xe985f64a4b466e2b,
+        0x9f30006c680fcf21,
+        0x840c001b5a60901d,
+        0xf67b000000f600f6,
+        0x4c8ef602471d69ec,
+        0xb006f69f78fb4586,
+        0x923af645425fcc56,
+        0x8345f6182711573e,
+        0x5b2b7b11d5b2156f,
+        0x58837b083c36db43,
+        0x481f7bf67b52f652,
+        0x6b21005f3f081b8a,
+        0xad5ef696500e0bcb,
+        0x66b10032243517ed,
+        0x88ec7b27262b0346,
+        0x2cfaf6841e9b26da,
+        0x7517005f3f121b05,
+        0x19257b4ba8823e28,
+        0xba5400bd052f0e96,
+        0x667a7b50b1ee6f82,
+        0x5515f61d3002f91d,
+        0xfb22f60fff101dfe,
+        0xf3440068d809c63b,
+        0x06500012326956e7,
+        0x5abc7b2c2f1ca525,
+        0x4dc60005096ca25a,
+        0xa77ff6841e162655,
+        0x45ae00cfc61df302,
+        0x27530075908109d2,
+        0xed6500561711e154,
+        0x1646f6609cbf5c02,
+        0x2005007e29f3b412,
+        0xb47500ab44c62920,
+        0x54dd7b1a6e24c0af,
+        0x167d7b420f06936d,
+        0x11d6f63381ece765,
+        0xe5167b3ef00a8a91,
+        0xddc7f626c97433ce,
+        0x109e7b304e9daef7,
+        0x0e6800487529503f,
+        0x491d7bdb21e8662b,
+        0x18ed0048753305ba,
+        0x0c2f0024f3d23b5d,
+        0x3af1f6cc9353ba19,
+        0x1a26006c688acf9c,
+        0x764f7b6272615473,
+        0x6a5af65c0cb9531c,
+        0xb6e5f6b139642a6d,
+        0x1a5df64edbd10607,
+        0x47e700f34803bde4,
+        0x5613f60247986967,
+        0xe06ff62f6261de89,
+        0x119f00510ea53f6b,
+        0x0101f621c0080274,
+        0x1545003f4db75aff,
+        0xff02001b5adb9027,
+        0x0270f606669e724d,
+        0xa8b7008751655fc3,
+        0x21030063cf18245c,
+        0xc882f6e7ed2e4a40,
+        0x961a00510e2a3ff0,
+        0x413ff6c36b520f68,
+        0xf09c005f3f8d1b0f,
+        0x316af6b1396e2a77,
+        0xf7b37b0333453964,
+        0xdc8f7b2396256b60,
+        0x6579f62f62e6de0e,
+        0x7716f665a5b08d52,
+        0x261bf6725d324164,
+        0x4307f6e7ed384a4a,
+        0x9bc1f6609c445cf8,
+        0x25e37b6f2a540885,
+        0x05e1002d1b44750e,
+        0xb91cf6bad2e0d528,
+        0x12d77b5441f478d9,
+        0xc16b7bd2f9762ceb,
+        0xf8ebf60666237243,
+        0x1f047b5d69eb230f,
+        0xd578000ea2de4d0b,
+        0xe26e7b35578e50d6,
+        0xfc5a0012325f566c,
+        0x5c63f61408014edd,
+        0x281a7b78c3d04240,
+        0x30327bae061f6209,
+        0x53dcf6f9ae1c2f3b,
+        0xab5f0090eae1997e,
+        0x140df63c1a682120,
+        0x223b7b6602675dca,
+        0x36117bc03888477f,
+        0xf20cf665a52b8d5c,
+        0x0000000000000000,
+        0xcb2af6f015aa84fb,
+        0xf40b7b6b0b58ffa9,
+        0x7f657b0ccc46e415,
+        0x2e33f6a811f2f0bc,
+        0x46e67bd2f96c2c70,
+        0xce61f6f9ae262fb6,
+        0x130ff6570343b147,
+        0xe1360032243f1768,
+        0x2373f66935b69638,
+        0xcc6200f348f9bd69,
+        0x4a55f6de54379f0a,
+        0x51357b11d53715f4,
+        0x177e0063cf0e24e1,
+        0x4e3500ea20021233,
+        0x9951005a3617eaab,
+        0x6959003bbdb151a8,
+        0xd9587b1a6ea9c034,
+        0x60d2002063cc3206,
+        0x39b97bc96004813a,
+        0x1d94f657034db1c2,
+        0x233c0087516f5f3e,
+        0x61d3f64123d4c37a,
+        0x52a47bf67bcdf6cd,
+        0x5e2bf6388a5818bf,
+        0x8924f62a597a3c25,
+        0xd3087b083c40dbbe,
+        0x610a7b23961b6be5,
+        0x3d5f7bb79f169c3f,
+        0x4f6d7bed53514b12,
+        0xafce7b9c45ac0c18,
+        0x903b003f4d325a09,
+        0x07177b1565b81e55,
+        0xebf57b50b1736f07,
+        0xd440f60b6f8f142c,
+        0x95e2f64edb4c0611,
+        0x084ff61827075734,
+        0x4b567bff143f300d,
+        0x7137f653e447a86b,
+        0x2bc27b815c4ced6c,
+        0x04a9f62a59f53c2f,
+        0x1e957b78c3554236,
+        0xd82000173b5a87c6,
+        0xb5ad7bae0615628e,
+        0x443f00ea20871229,
+        0x4f36f60b6f0a14a7,
+        0x9a897b5d69662319,
+        0xb8557bb79f919c49,
+        0x1ecc005a369cea30,
+        0xc54bf6de54419f14,
+        0x3749f6c36bd70f5e,
+        0xe715004456a8fcde,
+        0x06197b304e22ae7c,
+        0x2a8a007e296eb48d,
+        0x08180036b4c020c9,
+        0xc74a7be4badf1161,
+        0x68ea0056171be1cf,
+        0x620b00445623fc59,
+        0x564d0020635132fc,
+        0x2dfb7ba5dea3b74e,
+        0x09507b39e70f5937,
+        0x574b000509e7a2d5,
+        0x30690090ea669903,
+        0xbe347bc960fa8130,
+        0x1c25f6725d2841e9,
+        0x6c597b6272575469,
+        0xa2d8007590fc094d,
+        0x541400fce16b681a,
+        0x0f2f7b4ba8073e1e,
+        0xdeff0029fcc36c3c,
+        0x354a00bd05390e11,
+        0x3510f69f7880450b,
+        0x6f38004d7e1a361e,
+        0x2854f69650890b46,
+        0x420600c62d304847,
+        0x1b5e7b6f2ad9080a,
+        0x42407be4ba5a11dc,
+        0x726f00561796e14a,
+        0x1fcdf67bf6a47ba4,
+        0x6ec90068d884c645,
+        0x24747b8a84be27ac,
+        0xc3db00d85f142d38,
+        0xa6477b815cc7ed76,
+        0x7e2d00099968ab36,
+        0xcaf27bed535b4b1c,
+        0x18b67b66025d5d4f,
+        0xbf6cf6cc9349ba9e,
+        0xfd927b15653d1e4b,
+        0x85447b1e8dafc98b,
+        0x9d317b6602e25d45,
+        0x04e07b0ccc3ce49a,
+        0x5f63003bbd36512d,
+        0x40d0f6de54bc9f8f,
+        0x5d2a00173b50874b,
+        0x809df60fff951d83,
+        0x0d30f64542daccd1,
+        0xbdfc00c62dab4851,
+        0x7039f66e3e223892,
+        0x63437b47180135c7,
+        0x37807ba5de1eb758,
+        0x6dc87b47187c3542,
+        0x2f31f68db7176095,
+        0x59840029fc3e6cb7,
+        0x5034f6f0152f8480,
+        0x5f9af61d307df998,
+        0x2e6a7b8a84392727,
+        0x6a207b3ef0008a16,
+        0x471ef6d52c4a654f,
+        0x4dfdf6e7edb34ac5,
+        0xb13e00a2ab4a7e65,
+        0x8d930036b445204e,
+        0x87b40024f34d3bd8,
+        0x46aff6f015258405,
+        0x0bf7f621c08302ef,
+        0x0d677b272621033c,
+        0xa0687b6f2a5e0800,
+        0xef64f65c0c3e53a1,
+        0x784e0068d8ffc6c0,
+        0x291b009912d844b4,
+        0x8ecb7b39e794592d,
+        0xcf9900fce1756824,
+        0xd0d17bff14c43003,
+        0x0a88f63c1a5e2116,
+        0x003a7b1e8d2ac906,
+        0x25acf68db70d601a,
+        0x9e69f669353196b3,
+        0x3e6000d85f1e2d42,
+        0x3f987bdb216d6621,
+        0x584cf626c9ef3349,
+        0x38b8f6a8116df037,
+        0xc61200e18790d8f3,
+        0x7bf60000007b007b,
+        0x97527b544179785e,
+        0x7c2e7b0333ca395a,
+        0x6f017b6b0bd3ff24,
+};
+
+//////////////////////////////////////////////////////////////////////////////////
+
+// Look Up Table - End
+
+//////////////////////////////////////////////////////////////////////////////////
+
 //////////////////////////////////////////////////////////////////////////////////
 
 //type definition - end                                             //
-
-//////////////////////////////////////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////////////////////////////////////
-
-//variable declaration   - begin                                       //
-
-//////////////////////////////////////////////////////////////////////////////////
-
-u8 sbox[16][16] = {
-
-        0x62, 0x31, 0x70, 0x8e, 0xbc, 0x30, 0x9c, 0x78, 0xe0, 0x5c, 0xce, 0xbb, 0x42, 0xac, 0xb8, 0xdf,
-
-        0x29, 0xe7, 0x86, 0x5f, 0xee, 0xba, 0x3f, 0x87, 0xc0, 0x36, 0xc3, 0x14, 0x7c, 0xec, 0x73, 0xda,
-
-        0x57, 0x72, 0xf6, 0x77, 0x98, 0x3b, 0xc5, 0xc4, 0x4c, 0x52, 0x81, 0x20, 0x15, 0x97, 0x26, 0xfc,
-
-        0x8b, 0x3c, 0xaf, 0x6e, 0xc8, 0x7e, 0xf0, 0x40, 0x24, 0xa1, 0xb1, 0x54, 0xff, 0xad, 0x51, 0xbd,
-
-        0xc1, 0x13, 0x41, 0xb5, 0x6b, 0x94, 0x63, 0xd6, 0xde, 0x6f, 0x89, 0xd2, 0xa9, 0xd4, 0x17, 0x38,
-
-        0xa5, 0xf2, 0xe3, 0xdb, 0x47, 0x66, 0xed, 0xcb, 0x4e, 0xd5, 0x05, 0x60, 0x8c, 0x06, 0x92, 0xa3,
-
-        0xbe, 0x68, 0x56, 0xa7, 0x80, 0x32, 0xfa, 0x6c, 0x8f, 0x88, 0xd9, 0x50, 0x0a, 0x21, 0x3d, 0x75,
-
-        0x71, 0x01, 0xe5, 0x7a, 0xc6, 0xb9, 0x82, 0x64, 0xd1, 0x00, 0x7d, 0x2b, 0xa0, 0x1a, 0x5e, 0xf5,
-
-        0x35, 0x90, 0x2f, 0x2a, 0x83, 0x49, 0x5a, 0xa8, 0xd8, 0x8d, 0x46, 0x96, 0xdc, 0xb0, 0xc9, 0xdd,
-
-        0xcd, 0x65, 0x44, 0xc7, 0x43, 0x67, 0x55, 0xeb, 0xe1, 0x9d, 0x34, 0x74, 0xb3, 0x4a, 0xca, 0xd7,
-
-        0x79, 0xbf, 0xf7, 0x99, 0x6a, 0x2d, 0xef, 0x85, 0xe2, 0x5d, 0xfe, 0x11, 0x0f, 0x19, 0xcc, 0xe4,
-
-        0x58, 0x09, 0x8a, 0x1b, 0x6d, 0x91, 0x9f, 0x4b, 0x61, 0x2c, 0x2e, 0xcf, 0x27, 0x10, 0x18, 0xb7,
-
-        0x1d, 0x0c, 0x9b, 0x39, 0x7f, 0xd3, 0x84, 0xa4, 0xf9, 0x76, 0x33, 0xf4, 0xf3, 0xd0, 0x07, 0x0e,
-
-        0x22, 0x1f, 0xfd, 0x25, 0x12, 0x08, 0x1e, 0x4d, 0xb6, 0xb4, 0x53, 0x37, 0xe8, 0xb2, 0x9e, 0x93,
-
-        0x02, 0xe9, 0xf1, 0x3a, 0x0b, 0xfb, 0x45, 0x69, 0xea, 0xf8, 0xc2, 0x1c, 0x04, 0x59, 0x03, 0x48,
-
-        0x16, 0xa2, 0x4f, 0x3e, 0x9a, 0x23, 0xaa, 0xae, 0x5b, 0xe6, 0x95, 0xab, 0x7b, 0x0d, 0x28, 0xa6
-
-};
-
-/*
-
-//type1
-
-u8 RC1_128[6][8] ={
-
-0x7D,0x2E,0xEF,0x8E,0xBD,0x6F,0x36,0x71,
-
-0x3F,0xD1,0x85,0x8A,0x20,0xFF,0x63,0x90,
-
-0x08,0xCB,0x86,0x9A,0x3C,0x4B,0xB5,0xFD,
-
-0xE0,0x4D,0x5E,0xE5,0x2B,0x77,0xEA,0xF2,
-
-0x0B,0x8D,0x9F,0x5B,0xF9,0x14,0x88,0x7C,
-
-0xF5,0x8D,0xBB,0xCC,0xFF,0xFB,0x21,0xEB
-
-};
-
-*/
-
-//type2
-/*
-u8 RC2_128[9][8] = {
-
-        0xAF,0xF6,0xF2,0x03,0x98,0xB3,0xE3,0xC9,
-
-        0x2D,0xB6,0x98,0x72,0x26,0x43,0xF3,0x40,
-
-        0x2B,0xFA,0xAA,0x8B,0x5B,0x17,0x0D,0x8A,
-
-        0x98,0xAC,0xEB,0x6D,0x20,0x76,0xB8,0xE7,
-
-        0x10,0x1B,0xFA,0x4A,0xFB,0x52,0x95,0x55,
-
-        0x44,0x21,0x38,0xC1,0x35,0xAE,0x2E,0xED,
-
-        0x25,0xB8,0x69,0x11,0x29,0x3B,0x57,0x27,
-
-        0xC5,0xE8,0x4A,0x22,0x16,0xCA,0x96,0x3E,
-
-        0x7E,0x38,0x7C,0x31,0x11,0xDA,0xCB,0x1A
-
-};
-*/
-//////////////////////////////////////////////////////////////////////////////////
-
-//variable declaration   - end                                       //
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -208,19 +386,10 @@ void XOR_ARY4(u8* out, u8* in1, u8* in2) {
     }
 }
 
-
 void COPY_ARY8(u8* out, u8* in) {
     int i = 0;
 
     for (i = 0; i<8; i++) {
-        out[i] = in[i];
-    }
-}
-
-void COPY_ARY4(u8* out, u8* in) {
-    int i = 0;
-
-    for (i = 0; i<4; i++) {
         out[i] = in[i];
     }
 }
@@ -232,212 +401,11 @@ void ZERO_ARY8(u8* inout) {
     }
 }
 
-void ZERO_ARY4(u8* inout) {
-    int i = 0;
-    for (i = 0; i<4; i++) {
-        inout[i] = 0;
-    }
-}
-
-
 //////////////////////////////////////////////////////////////////////////////////
 
 // functions for generic operation - begin                              //
 
 //////////////////////////////////////////////////////////////////////////////////
-
-
-
-//////////////////////////////////////////////////////////////////////////////////
-
-// functions for SBL operation - begin                                 //
-
-//////////////////////////////////////////////////////////////////////////////////
-
-void SBL(u8* X) {
-
-    int i = 0;
-    u8 low, high;
-
-    for (i = 0; i < 8; i++) {
-        low = X[i] & 0xf;
-        high = (X[i] >> 4) & 0xf;
-        X[i] = sbox[high][low];
-    }
-
-}
-
-void SBL_(u8* X) {
-    int i = 0;
-    u8 low, high;
-
-    for (i = 0; i < 4; i++) {
-        low = X[i] & 0xf;
-        high = (X[i] >> 4) & 0xf;
-        X[i] = sbox[high][low];
-    }
-}
-
-//////////////////////////////////////////////////////////////////////////////////
-
-// functions for SBL operation - end                                 //
-
-//////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////
-
-// functions for DL operation - begin                                 //
-
-//////////////////////////////////////////////////////////////////////////////////
-
-u32 Binary_MUL(u8 in1, u8 in2) {
-    int i = 0;
-    u32 result = 0;
-
-    for (i = 0; i<8; i++) {
-        if (in1 & (1 << i)) {
-            result ^= (in2 << i);
-        }
-    }
-    return result;
-}
-
-u32 Binary_MUL_(u8 in1, u8 in2) {
-    int i = 0;
-    u32 result = 0;
-
-    for (i = 0; i<4; i++) {
-        if (in1 & (1 << i)) {
-            result ^= (in2 << i);
-        }
-    }
-    return result;
-}
-
-
-u8 GF28(u8 in1, u8 in2) {
-    int i = 0;
-    u32 tmp = 0;
-    u32 flag = 0x8000;
-
-    tmp = Binary_MUL(in1, in2);
-
-    for (i = 0; i<8; i++) {
-
-        if (flag & tmp) {
-            tmp ^= 0x3880;
-
-        }
-    }
-
-    return (u8)tmp;
-}
-
-u8 GF28_(u8 in1, u8 in2) {
-
-    int i = 0;
-    u32 tmp = 0;
-    u32 flag = 0x8000;
-
-    tmp = Binary_MUL_(in1, in2);
-
-    for (i = 0; i<8; i++) {
-
-        if (flag & tmp) {
-            tmp ^= 0x3880;
-
-        }
-    }
-
-    return (u8)tmp;
-}
-
-void DL(u8* in1) {
-    u8 M[8][8] = {
-            0x28, 0x1A, 0x7B, 0x78, 0xC3, 0xD0, 0x42, 0x40,
-
-            0x1A, 0x7B, 0x78, 0xC3, 0xD0, 0x42, 0x40, 0x28,
-
-            0x7B, 0x78, 0xC3, 0xD0, 0x42, 0x40, 0x28, 0x1A,
-
-            0x78, 0xC3, 0xD0, 0x42, 0x40, 0x28, 0x1A, 0x7B,
-
-            0xC3, 0xD0, 0x42, 0x40, 0x28, 0x1A, 0x7B, 0x78,
-
-            0xD0, 0x42, 0x40, 0x28, 0x1A, 0x7B, 0x78, 0xC3,
-
-            0x42, 0x40, 0x28, 0x1A, 0x7B, 0x78, 0xC3, 0xD0,
-
-            0x40, 0x28, 0x1A, 0x7B, 0x78, 0xC3, 0xD0, 0x42
-    };
-
-    u8 in2[8] = { 0, };
-
-    int i = 0, j = 0;
-
-    for (i = 0; i<8; i++) {
-        in2[i] = in1[i];
-        in1[i] = 0;
-    }
-
-    for (i = 0; i<8; i++) {
-        for (j = 0; j<8; j++) {
-            in1[i] ^= GF28(in2[j], M[i][j]);  // Original   //Choose one of these
-            //in1[i] = in1[i] ^ ((in2[j] * M[i][j])% GF);  //Choose one of these
-        }
-    }
-
-}
-
-void DL_(u8* in1) {
-    u8 M[8][8] = {
-            0x28, 0x1A, 0x7B, 0x78, 0xC3, 0xD0, 0x42, 0x40,
-
-            0x1A, 0x7B, 0x78, 0xC3, 0xD0, 0x42, 0x40, 0x28,
-
-            0x7B, 0x78, 0xC3, 0xD0, 0x42, 0x40, 0x28, 0x1A,
-
-            0x78, 0xC3, 0xD0, 0x42, 0x40, 0x28, 0x1A, 0x7B,
-
-            0xC3, 0xD0, 0x42, 0x40, 0x28, 0x1A, 0x7B, 0x78,
-
-            0xD0, 0x42, 0x40, 0x28, 0x1A, 0x7B, 0x78, 0xC3,
-
-            0x42, 0x40, 0x28, 0x1A, 0x7B, 0x78, 0xC3, 0xD0,
-
-            0x40, 0x28, 0x1A, 0x7B, 0x78, 0xC3, 0xD0, 0x42
-    };
-
-    u8 in2[4] = { 0, };
-
-    int i = 0, j = 0;
-
-    for (i = 0; i<4; i++) {
-        in2[i] = in1[i];
-        in1[i] = 0;
-    }
-
-    for (i = 0; i<4; i++) {
-        for (j = 0; j<4; j++) {
-            in1[i] ^= GF28_(in2[j], M[i][j]);  // Original   //Choose one of these
-            //in1[i] = in1[i] ^ ((in2[j] * M[i][j])% GF);  //Choose one of these
-        }
-    }
-
-}
-
-
-
-//////////////////////////////////////////////////////////////////////////////////
-
-// functions for DL operation - end                                    //
-
-//////////////////////////////////////////////////////////////////////////////////
-
-
 
 //////////////////////////////////////////////////////////////////////////////////
 //StrToNum, NumToStr   - begin                                       //
@@ -569,9 +537,48 @@ void NumToStr_4(u64* x, u8* var_after) {
 //StrToNum, NumToStr   - end                                       //
 //////////////////////////////////////////////////////////////////////////////////
 
+void use_box(u8* in1){
+    int i=0;
+    u8 in2[8] = {0,};
+    u64 Sum=0;
+
+    for(i=0; i<8; i++){
+        in2[i] = in1[i];
+        in1[i] = 0;
+    }
+
+    Sum = LUT[in2[0]] ^
+          (  (LUT[in2[1]] << 8) ^ (LUT[in2[1]] >> 56) ) ^
+          (  (LUT[in2[2]] << 16) ^ (LUT[in2[2]] >> 48) ) ^
+          (  (LUT[in2[3]] << 24) ^ (LUT[in2[3]] >> 40) ) ^
+          (  (LUT[in2[4]] << 32) ^ (LUT[in2[4]] >> 32) ) ^
+          (  (LUT[in2[5]] << 40) ^ (LUT[in2[5]] >> 24) ) ^
+          (  (LUT[in2[6]] << 48) ^ (LUT[in2[6]] >> 16) ) ^
+          (  (LUT[in2[7]] << 56) ^ (LUT[in2[7]] >> 8) );
+
+    NumToBits(Sum, in1);
+
+}
 
 
+void use_box_4(u8* in1){
+    int i=0;
+    u8 in2[4] = {0,};
+    u64 Sum=0;
 
+    for(i=0; i<4; i++){
+        in2[i] = in1[i];
+        in1[i] = 0;
+    }
+
+    Sum = LUT[in2[0]] ^
+          (  (LUT[in2[1]] << 8) ^ (LUT[in2[1]] >> 24) ) ^
+          (  (LUT[in2[2]] << 16) ^ (LUT[in2[2]] >> 16) ) ^
+          (  (LUT[in2[3]] << 24) ^ (LUT[in2[3]] >> 8) ) ;
+
+    NumToBits_4(Sum, in1);
+
+}
 
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -625,15 +632,17 @@ void TBC_KS(u8(*RKA)[8], u8(*RKB)[8], u8* K, u8 n) {
         XOR_ARY8(X, KA, KC);         //X ← Ka^Kc^RCtype;
         XOR_ARY8(X, X, RC2_128[i]);
 
-        SBL(X);                  //X ← SBL(X);
-        DL(X);                  //X ← DL(X);
+        //SBL(X);                  //X ← SBL(X);
+        //DL(X);                  //X ← DL(X);
+        use_box(X);               // Using LUT instead SBL(). DL()
 
         XOR_ARY8(Y, KB, KD);         //Y ← Kb^Kd^n^X;
         Y[0] = Y[0] ^ n;
         XOR_ARY8(Y, Y, X);
 
-        SBL(Y);                  //Y ← SBL(Y);
-        DL(Y);                  //Y ← DL(Y);
+        //SBL(Y);                  //Y ← SBL(Y);
+        //DL(Y);                  //Y ← DL(Y);
+        use_box(Y);               // Using LUT instead SBL(). DL()
 
         //printf("\n");  //using in test
 
@@ -690,9 +699,7 @@ void TBC_KS(u8(*RKA)[8], u8(*RKB)[8], u8* K, u8 n) {
 void TBC_TS(u8(*TAB)[16], u8* T) {
     u8 TL[8] = { 0, };
     u8 TR[8] = { 0, };
-
     u8 i = 0;
-    u8 j = 0;
     u8 r = ROUND_NUM;
 
 
@@ -713,22 +720,16 @@ void TBC_TS(u8(*TAB)[16], u8* T) {
     }
 
 }
-
-
 //////////////////////////////////////////////////////////////////////////////////
 
 // functions for TBC_TS operation - end                                 //
 
 //////////////////////////////////////////////////////////////////////////////////
 
-
-
-
 //////////////////////////////////////////////////////////////////////////////////
 // functions for FO,FE operation - begin                              //
 // static case: n1: 32-bit,      n2: 32-bit                              //
 //////////////////////////////////////////////////////////////////////////////////
-
 void FOFE(u8* Z, u8* XBTA, u8* RKa, u8* RKb, u8* TB) {
     u8 Y[8] = { 0, };
     u8 i = 0;
@@ -743,17 +744,15 @@ void FOFE(u8* Z, u8* XBTA, u8* RKa, u8* RKb, u8* TB) {
 
     XOR_ARY8(Y, Y, RKa);         //Y ← Y^RKa;
 
-    SBL(Y);                  //Y ← SBL(Y);
-
-
-    DL(Y);                  //Y ← DL(Y);
-
+    //SBL(Y);                  //Y ← SBL(Y);
+    //DL(Y);                  //Y ← DL(Y);
+    use_box(Y);               // Using LUT instead SBL(). DL()
 
     XOR_ARY8(Y, Y, RKb);         //Y ← Y^RKb;
 
-    SBL(Y);                  //Y ← SBL(Y);
-
-    DL(Y);                  //Y ← DL(Y);
+    //SBL(Y);                  //Y ← SBL(Y);
+    //DL(Y);                  //Y ← DL(Y);
+    use_box(Y);               // Using LUT instead SBL(). DL()
 
     for (i = 0; i<4; i++) {         //Z ← Y[0:(m2?1)];
         Z[i] = Y[i];
@@ -775,17 +774,15 @@ void FOFE_4(u8* Z, u8* XBTA, u8* RKa, u8* RKb, u8* TB) {
 
     XOR_ARY4(Y, Y, RKa);         //Y ← Y^RKa;
 
-    SBL_(Y);                  //Y ← SBL(Y);
-
-
-    DL_(Y);                  //Y ← DL(Y);
-
+    //SBL_(Y);                  //Y ← SBL(Y);
+    //DL_(Y);                  //Y ← DL(Y);
+    use_box_4(Y);               // Using LUT instead SBL(). DL()
 
     XOR_ARY4(Y, Y, RKb);         //Y ← Y^RKb;
 
-    SBL_(Y);                  //Y ← SBL(Y);
-
-    DL_(Y);                  //Y ← DL(Y);
+    //SBL_(Y);                  //Y ← SBL(Y);
+    //DL_(Y);                  //Y ← DL(Y);
+    use_box_4(Y);               // Using LUT instead SBL(). DL()
 
     for (i = 0; i<2; i++) {         //Z ← Y[0:(m2?1)];
         Z[i] = Y[i];
@@ -1005,19 +1002,6 @@ void TBC_DEC_4(u8*X, u8*Y, u8(*RKA)[8], u8(*RKB)[8], u8(*TAB)[16]) {
     }
 }
 
-
-
-
-/////////////////////////////////////////////END - for FEA code adjustment///////////////////////////////////////////////
-/////////////////////////////////////////////END - for FEA code adjustment///////////////////////////////////////////////
-/////////////////////////////////////////////END - for FEA code adjustment///////////////////////////////////////////////
-/////////////////////////////////////////////END - for FEA code adjustment///////////////////////////////////////////////
-/////////////////////////////////////////////END - for FEA code adjustment///////////////////////////////////////////////
-/////////////////////////////////////////////END - for FEA code adjustment///////////////////////////////////////////////
-/////////////////////////////////////////////END - for FEA code adjustment///////////////////////////////////////////////
-/////////////////////////////////////////////END - for FEA code adjustment///////////////////////////////////////////////
-/////////////////////////////////////////////END - for FEA code adjustment///////////////////////////////////////////////
-/////////////////////////////////////////////END - for FEA code adjustment///////////////////////////////////////////////
 /////////////////////////////////////////////END - for FEA code adjustment///////////////////////////////////////////////
 /////////////////////////////////////////////END - for FEA code adjustment///////////////////////////////////////////////
 
